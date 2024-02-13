@@ -33,11 +33,12 @@ order = {
 def quit_program():
     quit_input = input('Would you like to quit? Type y to close program, type n to keep ordering.')
     quit_input = quit_input.strip()
+    quit_input = quit_input.lower()
 
-    if quit_input.lower() == 'y':
+    if quit_input == 'y':
         print('Goodbye! Come again!')
         sys.exit()
-    elif quit_input.lower() == 'n':
+    elif quit_input == 'n':
         print('Here is your current order: ')
         print_order()
     else:
@@ -93,10 +94,11 @@ def main_program_loop():
     while True:
         order_input = input('>')
         order_input = order_input.strip()
+        order_input = order_input.lower()
 
-        if order_input.lower() == 'quit':
+        if order_input == 'quit':
             quit_program()
-        elif order_input.lower() == 'order':
+        elif order_input == 'order':
             print_order()
         else:
             found = False
@@ -104,9 +106,9 @@ def main_program_loop():
             for course, food in order.items():
                 # if found, add to order
                 if order_input.lower() in food:
-                    order[course][order_input.lower()] += 1
+                    order[course][order_input] += 1
                     found = True
-                    if order[course][order_input.lower()] <=1:
+                    if order[course][order_input] <= 1:
                         print(f"**{order[course][order_input]} order of {order_input} has been added to your order**")
                     else:
                         print(f"**{order[course][order_input]} orders of {order_input} has been added to your order**")
@@ -116,11 +118,12 @@ def main_program_loop():
                 this anyway, type 'enchant me' to add it to your order. If you did not mean to order this, type 'jk' to 
                 keep ordering from the menu.''')
                 new_input = new_input.strip()
+                new_input = new_input.lower()
 
-                if new_input.lower() == 'enchant me':
-                    order['custom'][order_input.lower()] = 1
-                    print(f"**{order['custom'][order_input.lower()]} added to order!")
-                elif new_input.lower() == 'jk':
+                if new_input == 'enchant me':
+                    order['custom'][order_input] = 1
+                    print(f"**{order['custom'][order_input]} added to order!")
+                elif new_input == 'jk':
                     continue
                 else:
                     input('Sorry, I did not understand your input. Please try again.')
